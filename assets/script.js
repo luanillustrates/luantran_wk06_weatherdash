@@ -1,34 +1,37 @@
-var city = document.getElementById("search-city");
-var searchCity = document.getElementById("search-button");
-var clearSearch = document.getElementById("clear-history");
-var historyEl = document.getElementById("history");
-var currentWeather = document.getElementById("current-weather");
-var cityName = document.getElementById("city-name");
-var currentImage = document.getElementById("current-img");
-var currentTemp = document.getElementById("temperature");
-var currentHumidity = document.getElementById("humidity");
-var currentUV = document.getElementById("UV");
-var currentWind = document.getElementById("wind");
-var fiveDay = document.getElementById("fiveday");
-let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-const apiKey = "";
+let searchWeather = document.getElementById('weather-search');
+let city = document.getElementById('weather-city');
+let day = document.getElementById('weather-day');
+let currentTemp = document.getElementById('temperature>.value');
+let humidity = document.getElementById('humidity>.value');
+let wind = document.getElementById('wind>.value');
+let image = document.getElementById('weather-image');
 
-function getWeather(cityName) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
-    $.get(queryURL)
-        .then(function (response) {
-            currentWeather.classList.remove("d-none");
-        }
-        
-        )
+let clearSearch = document.getElementById('clear-history');
+let historyEl = document.getElementById('history');
+
+let searchHistory = JSON.parse(localStorage.getItem('search')) || [];
+const apiKey = '8bd71eee6c506631558c763d01721081';
+let queryUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + apiKey;
+
+let weatherCity = async (city) => {
+    let parameter = queryUrl + '&q=' + city;
+    let response = await fetch(parameter);
+    let weather = await response.json();
+    return weather;
 }
 
-
-
-fetch(queryURL)
-
-clearEl.addEventListener("click", function () {
-    localStorage.clear();
-    searchHistory = [];
-    renderSearchHistory();
+searchWeather.addEventListener('keydown', async (e) => {
+    if(e.key === 'Enter') {
+        let weather = await weatherCity(searchWeather.value);
+        updateWeather(weather);
+    }
 })
+
+let updateWeather = (data) => {
+    city.textContent = data.name + ', ' + data.sys.country;
+
+    temperature.textContent = Math.round(data.main.temp);
+    humidity.textContent = data.main.humidity;
+    wind.textContent = data.wind.speed
+}
+
