@@ -10,7 +10,7 @@ let clearSearch = document.getElementById('clear-history');
 let historyEl = document.getElementById('history');
 
 let searchHistory = JSON.parse(localStorage.getItem('search')) || [];
-const apiKey = '8bd71eee6c506631558c763d01721081';
+const apiKey = '';
 let queryUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + apiKey;
 
 let weatherCity = async (city) => {
