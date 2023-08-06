@@ -94,10 +94,3 @@ let dayWeek = (dt = new Date().getTime()) => {
     return new Date(dt).toLocaleDateString('en-EN', { 'weekday': 'short' });
 }
 
-// // save the last city searched
-// lastCitySearched = weatherData.name;
-
-// // save to the search history using the api's name value for consistancy
-// // this also keeps searches that did not return a result from populating the array
-// saveSearchHistory(weatherData.name);
-
