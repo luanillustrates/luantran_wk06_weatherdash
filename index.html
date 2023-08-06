@@ -20,50 +20,56 @@
 
   <div class="container-fluid">
     <div id="weather" class="input-group justify-content-center">
-      <input type="search" id="weather-search" placeholder="search city">
-      <div class="container row justify-content-center">
+      <div class="container row justify-content-center mt-4">
+        <input type="search" id="weather-search" placeholder="search city">
         <button id="clear-history" class="btn btn-warning m-3" type="button">clear history</button>
         <form id="history"></form>
       </div>
 
-      <div id="weather-today" class="container-fluid row justify-content-center">
+      <div id="weather-today" class="container-fluid row justify-content-center mt-5">
         <div id="weather-details">
           <h2 id="weather-city"></h2>
           <p id="weather-day"></p>
           <div id="weather-current">
-            <p id="temperature"><span class="value"></span>&deg;C</p>
-            <p id="humidity"><span class="value"></span>%</p>
-            <p id="wind"><span class="value">m/s</span></p>
+            <p id="date"></p>
+            <p id="temperature"></p>
+            <p id="humidity"></p>
+            <p id="wind"></p>
           </div>
         </div>
         <img src="" alt="" id="weather-image">
       </div>
 
       <div class="weather-forecast d-flex row">
+        <div class="forecast-item card m-5">
+          <img src="" alt="" class="forecast-image">
+          <h3 class="forecast-day"></h3>
+          <p id="forecast-date"></p>
+          <p class="forecast-temp"></p>
+        </div>
         <article class="forecast-item card m-5">
           <img src="" alt="" class="forecast-image">
           <h3 class="forecast-day"></h3>
-          <p class="forecast-temp"><span class="value">&deg;C</span></p>
+          <p id="forecast-date"></p>
+          <p class="forecast-temp"></p>
         </article>
         <article class="forecast-item card m-5">
           <img src="" alt="" class="forecast-image">
           <h3 class="forecast-day"></h3>
-          <p class="forecast-temp"><span class="value">&deg;C</span></p>
+          <p id="forecast-date"></p>
+          <p class="forecast-temp"></p>
         </article>
         <article class="forecast-item card m-5">
           <img src="" alt="" class="forecast-image">
           <h3 class="forecast-day"></h3>
-          <p class="forecast-temp"><span class="value">&deg;C</span></p>
+          <p id="forecast-date"></p>
+          <p class="forecast-temp"></p>
         </article>
         <article class="forecast-item card m-5">
           <img src="" alt="" class="forecast-image">
           <h3 class="forecast-day"></h3>
-          <p class="forecast-temp"><span class="value">&deg;C</span></p>
-        </article>
-        <article class="forecast-item card m-5">
-          <img src="" alt="" class="forecast-image">
-          <h3 class="forecast-day"></h3>
-          <p class="forecast-temp"><span class="value">&deg;C</span></p>
+          <p id="forecast-date"></p>
+          <p class="forecast-temp"></p>
         </article>
       </div>
     </div>
@@ -115,7 +121,6 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <script>dayjs().format()</script>
   <script src="./assets/script.js"></script>
 </body>
 
