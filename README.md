@@ -5,7 +5,7 @@ A webpage that utilises the Openweathermap API to provide a five day forecast as
 
 Deployed link: 
 
-![website's appearance and functionality preview](./assets/screenshot.jpg)
+![website's appearance and functionality preview](../screenshot.jpg)
 
 ## Credits
 
