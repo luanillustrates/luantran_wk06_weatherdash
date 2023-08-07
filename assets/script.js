@@ -49,13 +49,12 @@ let displayWeather = function (weatherData) {
         .then(function (response) {
             response.json().then(function (data) {
 
-                // clear any previous entries in the five-day forecast
+                // clear previous entries in forecast
                 $("#five-day").empty();
 
-                // get every 8th value (24hours) in the returned array from the api call
+                // get every 8th value (24hours)
                 for (i = 7; i <= data.list.length; i += 8) {
 
-                    // insert data into my day forecast card template
                     let fiveDayCard = `
                     <div class="col-md-2 m-2 py-2 card text-dark bg-warning">
                         <div class="card-body p-1">
@@ -72,3 +71,61 @@ let displayWeather = function (weatherData) {
                 }
             })
         });
+
+    // save searched
+    lastCitySearched = weatherData.name;
+
+    saveSearchHistory(weatherData.name);
+};
+
+// local storage properties
+let saveSearchHistory = function (city) {
+    if (!searchHistory.includes(city)) {
+        searchHistory.push(city);
+        $("#search-history").append("<a href='#' class='list-group-item list-group-item-action' id='" + city + "'>" + city + "</a>")
+    }
+
+    localStorage.setItem("weatherSearchHistory", JSON.stringify(searchHistory));
+    localStorage.setItem("lastCitySearched", JSON.stringify(lastCitySearched));
+
+    loadSearchHistory();
+};
+
+let loadSearchHistory = function () {
+    searchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
+    lastCitySearched = JSON.parse(localStorage.getItem("lastCitySearched"));
+
+    if (!searchHistory) {
+        searchHistory = []
+    }
+
+    if (!lastCitySearched) {
+        lastCitySearched = ""
+    }
+
+    $("#search-history").empty();
+
+    // run through cities found in array
+    for (i = 0; i < searchHistory.length; i++) {
+
+        $("#search-history").append("<a href='#' class='list-group-item list-group-item-action' id='" + searchHistory[i] + "'>" + searchHistory[i] + "</a>");
+    }
+};
+
+loadSearchHistory();
+
+
+if (lastCitySearched != "") {
+    callCityWeather(lastCitySearched);
+}
+
+$("#search-form").submit(searchSubmitHandler);
+$("#search-history").on("click", function (event) {
+    let prevCity = $(event.target).closest("a").attr("id");
+    callCityWeather(prevCity);
+});
+$("#clear-search").on("click", function () {
+    localStorage.clear();
+    searchHistory = [];
+    loadSearchHistory();
+});
