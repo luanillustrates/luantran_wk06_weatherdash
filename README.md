@@ -3,7 +3,7 @@ A webpage that utilises the Openweathermap API to provide a five day forecast as
 
 ## Usage
 
-Deployed link: 
+Deployed link: https://luanillustrates.github.io/luantran_wk06_weatherdash/
 
 ![website's appearance and functionality preview](assets/screenshot.jpg)
 
